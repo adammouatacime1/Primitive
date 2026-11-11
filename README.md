@@ -74,7 +74,7 @@ Le dépôt désigné pour ce projet est **adammouatacime1/Primitive**. Le workfl
 
 La source Pages doit être **GitHub Actions** (`build_type: workflow`). La première activation nécessite un accès GitHub approprié ; le jeton standard d’un workflow ne permet pas de créer la configuration Pages d’un dépôt vierge. Après activation, les permissions `pages: write` et `id-token: write` du workflow suffisent au déploiement normal.
 
-Au moment de la livraison locale, le proxy de l’environnement refuse `api.github.com` et `adammouatacime1.github.io` avant authentification. Cela empêche la configuration Pages par API, le suivi des exécutions et la validation de l’adresse publique. Aucun succès de publication n’est affirmé sans ces vérifications. L’accès Git est distinct et a été vérifié. Voir [VERIFICATIONS.md](VERIFICATIONS.md) pour les résultats réels.
+Au moment de la livraison locale, le proxy de l’environnement refuse `api.github.com` et `adammouatacime1.github.io` avant authentification. Cela empêche la configuration Pages par API et la validation de l’adresse publique. L’accès Git est distinct et a été vérifié. Le premier workflow a été déclenché et son statut a pu être suivi sur la page publique github.com : il a échoué à l’étape de configuration, car le site Pages est introuvable. Voir [l’exécution #1](https://github.com/adammouatacime1/Primitive/actions/runs/43114340144). Aucun succès de publication n’est affirmé. Voir [VERIFICATIONS.md](VERIFICATIONS.md) pour les résultats réels.
 
 ## Organisation des sources
 
