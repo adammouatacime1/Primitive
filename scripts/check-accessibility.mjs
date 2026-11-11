@@ -1,0 +1,6 @@
+import { chromium } from 'playwright-core';
+import AxeBuilder from '@axe-core/playwright';
+import {writeFile,mkdir} from 'node:fs/promises';
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
+const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();const reports=[];
+try{for(const route of ['accueil','a1','c1','exercices','atelier-reservoir','atelier-recognition','revision']){await page.goto((process.env.TEST_URL||'http://127.0.0.1:5173/')+'#'+route);await page.evaluate(()=>document.fonts.ready);const r=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();reports.push({route,violations:r.violations.map(v=>({id:v.id,impact:v.impact,description:v.description,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))});}await mkdir('.test-results',{recursive:true});await writeFile('.test-results/accessibility.json',JSON.stringify(reports,null,2));console.log(JSON.stringify(reports.map(r=>({route:r.route,violations:r.violations.map(v=>({id:v.id,nodes:v.nodes.slice(0,4)}))})),null,2));if(reports.some(r=>r.violations.length))process.exitCode=1;}finally{await browser.close();}

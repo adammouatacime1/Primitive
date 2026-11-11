@@ -1,0 +1,23 @@
+{
+  "name": "comprendre-les-primitives",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test",
+    "test:browser": "node scripts/check-browser.mjs",
+    "pdf": "node scripts/export-pdf.mjs",
+    "test:accessibility": "node scripts/check-accessibility.mjs"
+  },
+  "dependencies": {
+    "katex": "0.16.22"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "playwright-core": "1.56.1",
+    "vite": "6.4.1"
+  }
+}
